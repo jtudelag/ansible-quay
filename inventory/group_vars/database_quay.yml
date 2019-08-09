@@ -1,7 +1,8 @@
 ---
+
 # Quay Postgres
 postgresql_database: "{{ quay_database_name }}"
 
-# These Values will be randomaly generated if not defined
+# These Values will be randomly generated if not defined
 postgresql_username: "{{ quay_database_username }}"
 postgresql_password: "{{ quay_database_password }}"
