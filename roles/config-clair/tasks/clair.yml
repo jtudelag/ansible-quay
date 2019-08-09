@@ -1,0 +1,30 @@
+---
+
+- name: Configure Configuration Directory
+  file:
+    state: directory
+    owner: root
+    group: root
+    mode: g+rw
+    path: "{{ clair_config_dir }}"
+
+- name: Setup Clair configuration file
+  template:
+    src: "config.{{ clair_image_tag }}.yaml.j2"
+    dest: "{{ clair_config_dir }}/config.yaml"
+    owner: root
+    group: root
+    mode: g+rw
+  notify: Restart Clair Service
+
+- name: Configure systemd environment files
+  template:
+    src: "{{ clair_name }}.j2"
+    dest: "{{ systemd_environmentfile_dir}}/{{ clair_name }}"
+  notify: "Restart Clair Service"
+
+- name: Configure systemd unit files
+  template:
+    src: "{{ clair_service }}.j2"
+    dest: "{{ systemd_service_dir}}/{{ clair_service }}"
+  notify: "Restart Clair Service"

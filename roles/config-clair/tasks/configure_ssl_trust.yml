@@ -1,0 +1,26 @@
+---
+
+- name: Configure Trusted SSL
+  block:
+    - name: Check if Trusted SSL file exists
+      become: false
+      stat:
+        path: "{{ clair_ssl_trust_src_file  }}"
+      register: trusted_ssl_exists
+      changed_when: False
+      delegate_to: localhost
+    
+    - name: Fail if SSL source file does not exist locally
+      fail:
+        msg: "Could not locate SSL trust certificate"
+      when: trusted_ssl_exists.stat.exists == false
+  
+    - name: Copy SSL Certificate
+      copy:
+        src: "{{ clair_ssl_trust_src_file }}"
+        dest: "{{ clair_ssl_trust_host_file }}"
+        owner: root
+        group: root
+        mode: g+rw
+      notify: Restart Clair Service
+  when: clair_ssl_trust_configure|bool
