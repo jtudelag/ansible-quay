@@ -1,0 +1,30 @@
+---
+- name: "Install additional packages for Docker"
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+  - docker
+
+- name: "Enable docker"
+  service:
+    name: docker
+    enabled: yes
+    state: stopped
+
+- name: Create the docker-storage config file
+  template:
+    src: docker-storage-setup-overlayfs.j2
+    dest: /etc/sysconfig/docker-storage-setup
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Setup docker-storage"
+  shell: docker-storage-setup
+
+- name: "Start docker"
+  service:
+    name: docker
+    enabled: yes
+    state: started
