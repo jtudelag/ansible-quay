@@ -13,7 +13,7 @@
 - name: Include systemd configurations
   include_tasks: configure_systemd.yml
 
-- name: Configure Quay registry creds
+- name: Configure creds for pulling Quay image
   include_tasks: container_credentials.yml
 
 - name: Include firewall tasks
