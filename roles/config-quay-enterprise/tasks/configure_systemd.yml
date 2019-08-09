@@ -1,0 +1,18 @@
+---
+
+- name: Configure systemd environment files
+  template:
+    src: "quay.j2"
+    dest: "{{ systemd_environmentfile_dir}}/{{ quay_name }}"
+
+- name: Configure systemd unit files
+  template:
+    src: "quay.service.j2"
+    dest: "{{ systemd_service_dir}}/{{ quay_service }}"
+
+- name: Make sure quay service is enabled but stopped
+  systemd:
+    name: "{{ quay_service }}"
+    enabled: yes
+    state: stopped
+    daemon_reload: yes

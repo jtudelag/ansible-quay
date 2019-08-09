@@ -1,0 +1,25 @@
+---
+# Base Configurations
+quay_name: quay
+quay_service: "{{ quay_name }}.service"
+quay_database_type: postgresql
+
+#Systemd
+systemd_service_dir: /etc/systemd/system
+systemd_environmentfile_dir: /etc/sysconfig
+
+# Quay
+quay_image: quay.io/redhat/quay:v3.0.4
+quay_config_dir: /var/lib/quay/config
+quay_container_config_dir: /conf/stack
+quay_storage_dir: /var/lib/quay/storage
+quay_container_storage_dir: /datastorage
+quay_debug_enabled: True
+quay_config_password: redhat2019
+quay_use_local_storage: True
+
+# Port Configurations
+quay_host_http_port: 80
+quay_container_http_port: 8080
+quay_host_https_port: 443
+quay_container_https_port: 8443

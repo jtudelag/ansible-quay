@@ -1,0 +1,23 @@
+---
+- name: Configure Storage Directories
+  file:
+    state: directory
+    owner: root
+    group: root
+    mode: 777
+    path: "{{ item }}"
+  with_items:
+    - "{{ quay_config_dir }}"
+    - "{{ quay_storage_dir }}"
+
+- name: Include systemd configurations
+  include_tasks: configure_systemd.yml
+
+- name: Configure Quay registry creds
+  include_tasks: container_credentials.yml
+
+- name: Include firewall tasks
+  include_tasks: firewall.yml
+
+- name: Setup Initial User and Configuration
+  include_tasks: complete_setup.yml

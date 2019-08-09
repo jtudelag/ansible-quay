@@ -1,0 +1,15 @@
+---
+
+- name: Check if Quay configuration exists
+  stat:
+    path: "{{ quay_config_dir }}/config.yaml"
+  register: quay_config_stat_result
+
+- name: Run Quay in config-mode
+  shell: docker run -d --rm --name quay-config -p 443:8443 "{{ quay_image }}" config "{{ quay_config_password }}"
+  when: not quay_config_stat_result.stat.exists
+
+- name: Display Quay config URL
+  debug:
+    msg: "Please go to https://{{ ansible_default_ipv4.address }} to finish your Quay config."
+  when: not quay_config_stat_result.stat.exists
