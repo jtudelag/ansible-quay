@@ -16,4 +16,3 @@ redis_host_port: 6379
 #Systemd
 systemd_service_dir: /etc/systemd/system
 systemd_environmentfile_dir: /etc/sysconfig
-
