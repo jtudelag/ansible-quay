@@ -1,0 +1,10 @@
+---
+
+- name: Install Containerized Redis
+  include_tasks: install_containerized.yml
+  when: mode == "containerized"
+
+- name: Flush Handlers (Redis)
+  meta: flush_handlers
+
+# TODO: Test redis is up 'exec 3<>/dev/tcp/localhost/6379 && echo -e "PING\r\n" >&3 && head -c 7 <&3'
