@@ -1,0 +1,25 @@
+---
+- hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    repos:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+  tasks:
+   - name: Register
+     shell: subscription-manager register --username "{{ lookup('env','RHN_USER') }}" --password "{{ lookup('env','RHN_PASS') }}"
+    
+   - name: Attach
+     shell: subscription-manager attach --pool "{{ lookup('env','RHN_POOL') }}"
+                    
+   - name: Disable all RHSM repositories
+     rhsm_repository:
+       name: '*'
+       state: disabled
+          
+   - name: Enable repos
+     rhsm_repository:
+       name: "{{ item }}"
+       state: enabled
+     loop: "{{ repos }}"

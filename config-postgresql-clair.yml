@@ -1,0 +1,7 @@
+---
+- hosts: database_clair
+  become: true
+  roles:
+   - config-postgresql
+  tags:
+   - config-postgresql-clair

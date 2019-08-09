@@ -1,0 +1,7 @@
+---
+- hosts: quay_enterprise
+  become: true
+  roles:
+   - config-quay-enterprise
+  tags:
+   - config-quay-enterprise

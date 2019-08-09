@@ -1,0 +1,13 @@
+---
+- hosts: database_quay
+  become: true
+  roles:
+   - config-postgresql
+  post_tasks:
+   - name: Create PG Extension
+     shell: docker exec -it postgresql.service /bin/bash -c 'echo "CREATE EXTENSION IF NOT EXISTS pg_trgm;" | /opt/rh/rh-postgresql96/root/usr/bin/psql -d {{ postgresql_database }}'
+
+   - name: "Make Postgres Quay user {{ postgresql_username }} SUPERUSER" 
+     shell: sudo docker exec -it postgresql.service /bin/bash -c 'echo "ALTER USER {{ postgresql_username }} WITH SUPERUSER;" | /opt/rh/rh-postgresql96/root/usr/bin/psql'
+  tags:
+   - config-postgresql-quay

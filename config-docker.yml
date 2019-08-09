@@ -1,0 +1,7 @@
+---
+- hosts: docker_hosts
+  become: true
+  roles:
+   - config-docker
+  tags:
+   - config-docker
