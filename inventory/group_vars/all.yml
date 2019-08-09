@@ -1,0 +1,12 @@
+---
+
+# Quay Database Configuration
+quay_database_type: postgresql
+quay_database_name: quaydb
+quay_database_username: quay
+quay_database_password: redhat2019
+
+# Clair Database Configuration
+clair_database_name: clairdb
+clair_database_username: clair
+clair_database_password: redhat2019

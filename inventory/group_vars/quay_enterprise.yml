@@ -1,0 +1,6 @@
+---
+# Quay
+quay_image: quay.io/redhat/quay:v3.0.4
+quay_debug_enabled: True
+quay_use_local_storage: True
+quay_config_password: redhat2019

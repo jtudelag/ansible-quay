@@ -1,0 +1,7 @@
+---
+# Clair Postgres
+postgresql_database: "{{ clair_database_name }}"
+
+# These Values will be randomaly generated if not defined
+postgresql_username: "{{ clair_database_username }}"
+postgresql_password: "{{ clair_database_password }}"

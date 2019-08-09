@@ -1,0 +1,18 @@
+---
+
+mode: containerized
+
+# Redis Systemd Service
+redis_name: redis
+redis_service: "{{ redis_name }}.service"
+
+# Redis
+redis_image: registry.access.redhat.com/rhscl/redis-32-rhel7
+redis_storage_dir: /var/lib/redis
+redis_container_storage_dir: /var/lib/redis/data
+redis_container_port: 6379
+redis_host_port: 6379
+
+#Systemd
+systemd_service_dir: /etc/systemd/system
+systemd_environmentfile_dir: /etc/sysconfig
