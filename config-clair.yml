@@ -1,0 +1,7 @@
+---
+- hosts: clair
+  become: true
+  roles:
+   - config-clair
+  tags:
+   - config-clair
