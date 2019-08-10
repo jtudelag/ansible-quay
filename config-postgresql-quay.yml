@@ -4,10 +4,16 @@
   roles:
    - config-postgresql
   post_tasks:
+   - name: Wait for Postgres to be up
+     wait_for:
+       port: "{{ postgresql_host_port }}"
+       delay: 20
+       timeout: 60
+
    - name: Create PG Extension
      shell: docker exec -it postgresql.service /bin/bash -c 'echo "CREATE EXTENSION IF NOT EXISTS pg_trgm;" | /opt/rh/rh-postgresql96/root/usr/bin/psql -d {{ postgresql_database }}'
 
    - name: "Make Postgres Quay user {{ postgresql_username }} SUPERUSER" 
-     shell: sudo docker exec -it postgresql.service /bin/bash -c 'echo "ALTER USER {{ postgresql_username }} WITH SUPERUSER;" | /opt/rh/rh-postgresql96/root/usr/bin/psql'
+     shell: docker exec -it postgresql.service /bin/bash -c 'echo "ALTER USER {{ postgresql_username }} WITH SUPERUSER;" | /opt/rh/rh-postgresql96/root/usr/bin/psql'
   tags:
    - config-postgresql-quay
