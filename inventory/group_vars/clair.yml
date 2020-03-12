@@ -1,7 +1,7 @@
 ---
 
 # Clair
-clair_image_tag: v3.0.4
+clair_image_tag: v3.2.1
 
 # Clair-Quay SSL Trust
 clair_ssl_trust_src_file: /tmp/clair-ssl-trust.crt
