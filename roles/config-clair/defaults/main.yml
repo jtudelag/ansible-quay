@@ -10,7 +10,7 @@ systemd_service_dir: /etc/systemd/system
 systemd_environmentfile_dir: /etc/sysconfig
 
 # Clair
-clair_image_tag: v3.0.4
+clair_image_tag: v3.2.1
 clair_image: "quay.io/redhat/clair-jwt:{{ clair_image_tag }}"
 clair_config_dir: /var/lib/clair/config
 clair_container_config_dir: /clair/config
