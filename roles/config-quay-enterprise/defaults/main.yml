@@ -9,7 +9,7 @@ systemd_service_dir: /etc/systemd/system
 systemd_environmentfile_dir: /etc/sysconfig
 
 # Quay
-quay_image: quay.io/redhat/quay:v3.0.4
+quay_image: quay.io/redhat/quay:v3.2.1
 quay_config_dir: /var/lib/quay/config
 quay_container_config_dir: /conf/stack
 quay_storage_dir: /var/lib/quay/storage
