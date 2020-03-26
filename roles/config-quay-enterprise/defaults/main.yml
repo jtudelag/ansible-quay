@@ -14,7 +14,7 @@ quay_config_dir: /var/lib/quay/config
 quay_container_config_dir: /conf/stack
 quay_storage_dir: /var/lib/quay/storage
 quay_container_storage_dir: /datastorage
-quay_debug_enabled: True
+quay_debug_enabled: False
 quay_config_password: redhat2019
 quay_use_local_storage: True
 
