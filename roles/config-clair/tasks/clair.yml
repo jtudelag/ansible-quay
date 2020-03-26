@@ -10,7 +10,7 @@
 
 - name: Setup Clair configuration file
   template:
-    src: "config.{{ clair_image_tag }}.yaml.j2"
+    src: "config.yaml.j2"
     dest: "{{ clair_config_dir }}/config.yaml"
     owner: root
     group: root
