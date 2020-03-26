@@ -5,19 +5,8 @@ The ansible roles found in this directory are associated with configuring a dock
 
 Effectively, the `docker.yml` task will install packages for docker and add users to the docker user group.
 
-It will also configure docker storage, start and enabled docker service.
+Since EL 7.4, equivalent Fedora or other modern Linux distributions, OverlayFS became the default Docker storage driver and there for no longer needs a backing device mapper.
 
-
-Role Variables
---------------
-```
-docker_dev: /dev/vdb
-docker_vg: docker-vol
-docker_data_size: 100%VG
-docker_dm_basesize: "10G"
-container_root_lv_name: dockerlv
-container_root_lv_mount_path: /var/lib/docker
-```
 
 
 Dependencies
@@ -31,14 +20,6 @@ Example Playbooks
 - hosts: bastion
   roles:
     - role: config-docker
-```
-
-Example Inventory
-----------------
-
-```
-docker_install: True
-docker_username: bob
 ```
 
 
