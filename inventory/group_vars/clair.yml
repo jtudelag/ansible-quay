@@ -1,7 +1,7 @@
 ---
 
 # Clair
-clair_image_tag: v3.0.4
+clair_image_tag: v3.2.1
 
 # Clair-Quay SSL Trust
 clair_ssl_trust_src_file: /tmp/clair-ssl-trust.crt
@@ -10,4 +10,4 @@ clair_ssl_trust_configure: True
 # Quay address
 quay_enterprise_address: https://myregistry.mycompany.com
 
-postgresql_db_uri: "postgresql://{{ clair_database_username }}:{{ clair_database_password }}@{{ postgresql_host if postgresql_host is defined and postgresql_host|trim != '' else hostvars[inventory_hostname]['ansible_eth0']['ipv4']['address'] }}:{{ postgresql_port | default('5432') }}/{{ clair_database_name | default('clair') }}{{ '?sslmode=disable' if postgresql_ssl_enabled is not defined or not postgresql_ssl_enabled }}"
+postgresql_db_uri: "postgresql://{{ clair_database_username }}:{{ clair_database_password }}@{{ postgresql_host if postgresql_host is defined and postgresql_host|trim != '' else hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:{{ postgresql_port | default('5432') }}/{{ clair_database_name | default('clair') }}{{ '?sslmode=disable' if postgresql_ssl_enabled is not defined or not postgresql_ssl_enabled }}"
